@@ -25,6 +25,10 @@
                                 <jet-nav-link :href="route('students.index')" :active="route().current('students.index')">
                                     Students
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('students.create')" :active="route().current('students.create')"
+              >
+                Add student
+              </jet-nav-link>
                             </div>
                         </div>
 
