@@ -47,7 +47,6 @@ class StudentController extends Controller
         );
 
         Student::create($request->all());
-
         return Redirect::route('students.index');
     }
 
