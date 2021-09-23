@@ -21045,7 +21045,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      console.log(this.form);
       this.$inertia.put(route("students.update", this.$props.student.id), this.form);
     }
   }
