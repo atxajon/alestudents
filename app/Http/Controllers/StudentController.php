@@ -69,7 +69,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return Inertia::render('EditForm', ['student' => $student]);
+        return Inertia::render('StudentsEditForm', ['student' => $student]);
     }
 
     /**
