@@ -11,6 +11,9 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                   <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+                    <jet-nav-link :href="route('students.create')" class="bg-blue-500  text-white rounded px-8 pt-2 pb-1 mb-8">
+                        Add new
+                    </jet-nav-link>
                     <table class="divide-y divide-gray-300">
                       <thead class="bg-gray-50">
                         <tr>
