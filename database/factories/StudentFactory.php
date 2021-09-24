@@ -22,15 +22,23 @@ class StudentFactory extends Factory
      */
     public function definition()
     {
-        //Generate a timestamp using mt_rand.
+        // Generate a timestamp using mt_rand.
         $timestamp = mt_rand(1, time());
 
-        //Format that timestamp into a readable date string.
-        $randomDate = date("d M Y", $timestamp);
+        // Format that timestamp into a date string.
+        $randomDate = date("Y-m-d", $timestamp);
+
+        $fakeName = $this->faker->text(10);
+        $fakeNameNoSpaces = str_replace(' ', '', $fakeName);
+        $fakeNameNoSpacesNoDots = str_replace('.', '', $fakeNameNoSpaces);
+
+        $fakeSurName = $this->faker->text(14);
+        $fakeSurNameNoSpaces = str_replace(' ', '', $fakeSurName);
+        $fakeSurNameNoSpacesNoDots = str_replace('.', '', $fakeSurNameNoSpaces);
 
         return [
-            'name' => $this->faker->text(12),
-            'surname' => $this->faker->text(15),
+            'name' => $fakeNameNoSpacesNoDots,
+            'surname' => $fakeSurNameNoSpacesNoDots,
             'dob' => $randomDate,
         ];
     }
