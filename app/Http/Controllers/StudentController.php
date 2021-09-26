@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return Inertia::render('StudentsList', ['students' => $students]);
+        return Inertia::render('Students/StudentsList', ['students' => $students]);
     }
 
     /**
@@ -27,7 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return Inertia::render('StudentsForm');
+        return Inertia::render('Students/StudentsForm');
     }
 
     /**
@@ -69,7 +69,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return Inertia::render('StudentsEditForm', ['student' => $student]);
+        return Inertia::render('Students/StudentsEditForm', ['student' => $student]);
     }
 
     /**
