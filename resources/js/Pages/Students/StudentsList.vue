@@ -11,10 +11,12 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                   <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <jet-nav-link :href="route('students.create')" class="bg-blue-500  text-white rounded px-8 pt-2 pb-1 mb-8">
-                        Add new
+                    <jet-nav-link :href="route('students.create')" class="bg-blue-500  text-white rounded px-5 pt-2 pb-1 mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+</svg> Add new
                     </jet-nav-link>
-                    <table class="divide-y divide-gray-300">
+                    <table id="studentsTable" class="divide-y divide-gray-300">
                       <thead class="bg-gray-50">
                         <tr>
                           <th>
@@ -87,9 +89,17 @@
 <script>
     import AppLayout from '@/Layouts/AppLayout.vue'
     import JetNavLink from '@/Jetstream/NavLink.vue'
-import { Inertia } from '@inertiajs/inertia'
+    import { Inertia } from '@inertiajs/inertia'
+    import datatables from 'datatables'
+    import { $,jQuery } from 'jquery';
+
+    //window.$ = $;
+    //window.jQuery = jQuery;
 
     export default {
+        mounted() {
+          this.wireInDataTable();
+        },
         props: {
           students: Array,
         },
@@ -100,6 +110,39 @@ import { Inertia } from '@inertiajs/inertia'
             }
         },
         methods: {
+            wireInDataTable() {
+              var $ = require('jquery');
+              $(function() {
+                $('#studentsTable').DataTable({
+                  // Default table rows to show.
+                  "iDisplayLength": 50,
+                  "sortInitialOrder": "desc",
+                  "aoColumnDefs": [
+                    // Right align classes.
+                    // { 
+                    //   "sClass": "dt-right", 
+                    //   "aTargets": [ 3, 4, 6, 7, 8, 9, 10] 
+                    // },
+                    // { 
+                    //   "sType": "numeric-comma", 
+                    //   "aTargets": [4, 10] 
+                    // },
+                    // When clicking on col headers sort first in desc.
+                    {
+                      "orderSequence": [
+                        'desc', 
+                        'asc'
+                      ],
+                      // Applied to all table columns.
+                      //"targets": "_all",
+                      columnDefs: [
+                        { orderable: false, targets: 0 }
+                      ],
+                    } 
+                  ],
+                });
+              });
+            },
             openModal() {
                 this.isOpen = true;
             },
@@ -120,3 +163,7 @@ import { Inertia } from '@inertiajs/inertia'
         },
     }
 </script>
+
+<style>
+  @import '~datatables/media/css/jquery.dataTables.min.css';
+</style>
